@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="VideoApi.Tests/VideoApi.Tests.csproj" />
+  <Project Path="VideoApi/VideoApi.csproj" />
+  <Project Path="VideoPlayer/VideoPlayer.csproj" />
+  <Project Path="VideoUploader.Tests/VideoUploader.Tests.csproj" />
+  <Project Path="VideoUploader/VideoUploader.csproj" />
+</Solution>

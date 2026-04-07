@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(cmd.exe:*)",
+      "Bash(dotnet new:*)",
+      "Bash(dotnet add:*)",
+      "Bash(dotnet sln:*)",
+      "Bash(ls:*)",
+      "Bash(dotnet build:*)",
+      "WebFetch(domain:www.nuget.org)",
+      "Bash(git:*)",
+      "Bash(grep -E \"\\\\.\\(csproj|slnx\\)$\")",
+      "Bash(dotnet package:*)",
+      "Bash(dotnet test:*)"
+    ]
+  }
+}
