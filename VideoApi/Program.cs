@@ -20,5 +20,3 @@ app.UseCors();
 app.MapControllers();
 app.Urls.Add("http://localhost:5000");
 app.Run();
-
-public partial class Program { }

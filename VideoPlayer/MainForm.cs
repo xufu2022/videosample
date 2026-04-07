@@ -12,8 +12,6 @@ namespace VideoPlayer
         private const string ApiBase = "http://localhost:5000";
         private static readonly HttpClient _httpClient = new HttpClient();
 
-        private enum PlayerState { Stopped, Playing, Paused }
-        private PlayerState _playerState = PlayerState.Stopped;
         private bool _pendingPlay = false;
 
         public MainForm()
@@ -50,45 +48,18 @@ namespace VideoPlayer
                 "var v = document.querySelector('video'); if (v) v.play();");
         }
 
-        private void listBoxVideos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // New selection resets player so next Play click loads fresh
-            _playerState = PlayerState.Stopped;
-            btnPlay.Text = "Play";
-        }
-
         private async void btnRefresh_Click(object sender, EventArgs e)
         {
             await RefreshVideoListAsync();
         }
 
-        private async void btnPlay_Click(object sender, EventArgs e)
+        private void btnPlay_Click(object sender, EventArgs e)
         {
             if (listBoxVideos.SelectedItem == null) return;
-
-            if (_playerState == PlayerState.Stopped)
-            {
-                var blobName = listBoxVideos.SelectedItem.ToString();
-                var url = $"{ApiBase}/api/video/{blobName}";
-                _pendingPlay = true;
-                PlayVideo(url);
-                _playerState = PlayerState.Playing;
-                btnPlay.Text = "Pause";
-            }
-            else if (_playerState == PlayerState.Playing)
-            {
-                await webView.CoreWebView2.ExecuteScriptAsync(
-                    "document.querySelector('video').pause();");
-                _playerState = PlayerState.Paused;
-                btnPlay.Text = "Resume";
-            }
-            else // Paused
-            {
-                await webView.CoreWebView2.ExecuteScriptAsync(
-                    "document.querySelector('video').play();");
-                _playerState = PlayerState.Playing;
-                btnPlay.Text = "Pause";
-            }
+            var blobName = listBoxVideos.SelectedItem.ToString();
+            var url = $"{ApiBase}/api/video/{blobName}";
+            _pendingPlay = true;
+            PlayVideo(url);
         }
 
         private async Task RefreshVideoListAsync()

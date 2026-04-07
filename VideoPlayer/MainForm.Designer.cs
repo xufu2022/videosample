@@ -47,7 +47,6 @@ namespace VideoPlayer
             // listBoxVideos
             this.listBoxVideos.Dock = System.Windows.Forms.DockStyle.Top;
             this.listBoxVideos.Height = 160;
-            this.listBoxVideos.SelectedIndexChanged += new System.EventHandler(this.listBoxVideos_SelectedIndexChanged);
 
             // webView
             this.webView.Dock = System.Windows.Forms.DockStyle.Fill;
